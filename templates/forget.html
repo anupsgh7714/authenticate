@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block title %} Reset/Forget Password {% endblock %}
+
+{% block content %}
+
+
+
+<!-- creating Login -->
+<div class="conatiner mt-5">
+    <div class="row">
+        <div class="col-12 text-center ">
+            <h1>Reset/Forget Password</h1>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5 mb-5 ">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form action="{% url 'forget' %}" method="POST">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="username" class="form-control" name="username" id="username"  placeholder="Enter username" required>
+                  </div>
+                <!-- {% if user.is_authenticated %}
+                    <input type="text" name='username' value="{{request.user}}" class="d-none">
+                {% endif %} -->
+
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input type="password" class="form-control" name="password" id="password"  placeholder="Enter New Password" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="c_password">Confirm Password</label>
+                  <input type="password" class="form-control" name="c_password" id="c_password"  placeholder="Confirm New Password" required>
+                </div>
+            
+                
+                <hr class="divider"/>
+                <div class="card card-body mb-2">
+                    <div class="card-title">
+                        <strong>Captcha</strong>
+                    </div>
+                    <hr class="divider">
+                    <div class="card-text">
+                        <!-- capthca -->
+                        {{ran}}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control" name="captcha" id="captcha"  placeholder="Enter Captcha Here" required>
+                  </div>
+                <button type="submit" class="btn btn-primary">Reset</button>
+              </form>
+              
+
+        
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

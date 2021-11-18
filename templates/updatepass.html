@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %} Update Password {% endblock %}
+
+{% block content %}
+
+
+
+<!-- creating Login -->
+<div class="conatiner mt-5">
+    <div class="row">
+        <div class="col-12 text-center ">
+            <h1>Update Password</h1>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5 mb-5 ">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form action="{% url 'updatepass' %}" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                  <label for="p_password">Previous Password</label>
+                  <input type="password" class="form-control" name="p_password" id="p_password" placeholder="Enter Previous Password" required>
+                </div>
+
+                {% if user.is_authenticated %}
+                    <input type="text" name='username' value="{{request.user}}" class="d-none">
+                {% endif %}
+
+                <div class="form-group">
+                  <label for="password">New Password</label>
+                  <input type="password" class="form-control" name="password" id="password"  placeholder="Enter New Password" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="c_password">Confirm New Password</label>
+                  <input type="password" class="form-control" name="c_password" id="c_password"  placeholder="Confirm New Password Password" required>
+                </div>
+            
+                <button type="submit" class="btn btn-primary">Update</button>
+              </form>
+
+        
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
